@@ -1,3 +1,6 @@
+
+<img src="https://i.imgur.com/6zsNtsS.jpg" alt="Cupcake Store">
+
 # Cupcake Store
 Projeto apenas para fins de estudo.
 
