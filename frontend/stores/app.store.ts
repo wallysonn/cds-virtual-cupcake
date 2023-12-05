@@ -4,9 +4,13 @@ import { listAllProducts } from '@/services/product.service'
 export const appStore = defineStore('app', {
     state: () => ({
         products: [] as ProductType[],
-        cart: [] as ProductType[]
+        cart: [] as ProductType[],
+        user: null as UserType | null
     }),
     actions: {
+        setUser(user: UserType) {
+            this.user = user
+        },
         addProductToCart(product: ProductType) {
             product.qtd = 1
             this.cart.push(product)
@@ -14,9 +18,18 @@ export const appStore = defineStore('app', {
         removeProductFromCart(product: ProductType) {
             const index = this.cart.findIndex((item) => item.id === product.id)
             this.cart.splice(index, 1)
+        },
+        clearProductsFromCart() {
+            this.cart = []
         }
     },
     getters: {
+        getUser(store) {
+            return store.user
+        },
+        isAuthenticated(store) {
+            return store.user !== null
+        },
         getAllProducts(store) {
             if (store.products.length === 0) {
                 listAllProducts().then((response) => {

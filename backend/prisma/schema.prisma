@@ -22,3 +22,16 @@ model Product {
   rating      Int @default(5)
   @@map("products")
 }
+
+model User {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  name      String
+  email     String   @unique
+  picture   String?
+  password  String
+  googleId  String?  @unique
+  isAdmin   Boolean  @default(false)
+  @@map("users")
+}

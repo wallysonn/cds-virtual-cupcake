@@ -32,34 +32,34 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
+import {verifyCodeFromGoogle} from '~/services/auth.service'
 import {
-  useTokenClient,
+  useCodeClient,
   type ImplicitFlowSuccessResponse,
   type ImplicitFlowErrorResponse
 } from "vue3-google-signin";
+const router = useRouter()
 
-const handleOnSuccess = (response: ImplicitFlowSuccessResponse) => {
+const handleOnSuccess = async (response: ImplicitFlowSuccessResponse) => {
   console.log("Access Token: ", response.access_token);
   console.log("ID Token: ", response.code);
   //Busca o usuário no banco de dados
+  try {
+    const ret = await verifyCodeFromGoogle(response.code)
+    console.log(ret)
+    await router.push('/profile')
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 const handleOnError = (errorResponse: ImplicitFlowErrorResponse) => {
   console.log("Error: ", errorResponse);
 };
 
-// const {isReady, login} = useOneTap({
-//   disableAutomaticPrompt: true,
-//   onSuccess: (response: CredentialResponse) => {
-//     console.log("Success:", response);
-//   },
-//   onError: () => console.error("Error with One Tap Login"),
-//   // options
-// });
-const { isReady, login } = useTokenClient({
+const {isReady, login} = useCodeClient({
   onSuccess: handleOnSuccess,
   onError: handleOnError,
-  // other options
 });
 
 

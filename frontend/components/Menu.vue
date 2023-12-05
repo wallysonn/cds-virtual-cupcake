@@ -19,22 +19,30 @@
     </div>
 
     <div class="hidden lg:flex lg:flex-1 lg:justify-end">
-      <NuxtLink to="/login" class="text-sm font-semibold leading-6">Entrar
+      <NuxtLink v-if="!store.isAuthenticated" to="/login" class="text-sm font-semibold leading-6">Entrar
         <UIcon name="i-mdi-arrow-right"/>
       </NuxtLink>
+
+      <NuxtLink to="/profile" v-else class="flex items-center">
+        <UAvatar class="mr-2" :src="store.user?.picture"/>
+        <span>{{ store.user?.name }}</span>
+      </NuxtLink>
+
     </div>
 
   </nav>
 
-  <Cart />
+  <Cart/>
 
 </template>
 <script lang="ts" setup>
+import {appStore} from "~/stores/app.store";
+
+const store = appStore();
 const props = defineProps({
   menuClass: {
     type: String,
     default: ""
   }
-
 })
 </script>
