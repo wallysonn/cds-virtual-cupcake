@@ -1,75 +1,38 @@
-# Nuxt 3 Minimal Starter
+# Cupcake
+- Aluno: Walison Gomes
+- Cruzeiro do Sul Virtual
+## Dependências
+Este projeto depende do Node.js versão 18.17 e uma instância do MariaDB
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Iniciar o projeto
 
-## Setup
-
-Make sure to install the dependencies:
+Instale as dependências:
 
 ```bash
-# npm
-npm install
-
-# pnpm
-pnpm install
-
-# yarn
+# yarn, caso não tenha o yarn instalado, instale com o comando: npm install -g yarn
 yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
+## Iniciar o servidor de desenvolvimento
 
-Start the development server on `http://localhost:3000`:
+O servidor será iniciado por padrão em `http://localhost:3000`:
 
 ```bash
-# npm
-npm run dev
-
-# pnpm
-pnpm run dev
-
 # yarn
 yarn dev
-
-# bun
-bun run dev
 ```
 
-## Production
+## Compilar e preparar para produção
 
-Build the application for production:
+Caso tenha interesse em compilar o projeto e testar em um ambiente de produção, execute os comandos abaixo:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
 # yarn
 yarn build
-
-# bun
-bun run build
 ```
+## Direitos
+- Este projeto foi desenvolvido para fins de estudo e não deve ser utilizado para fins comerciais.
+- Este projeto utiliza a biblioteca [Nuxt 3](https://nuxtjs.org/), [Nuxt UI](https://ui.nuxt.com/getting-started), [Pinia](https://nuxt.com/modules/pinia) e [Tailwind CSS](https://tailwindcss.com/).
+- Todas as imagens são meramente ilustrativas sendo retiradas do site [Pexels](https://www.pexels.com/pt-br/).
 
-Locally preview production build:
 
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
