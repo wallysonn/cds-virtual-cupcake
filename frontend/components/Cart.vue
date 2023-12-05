@@ -50,14 +50,6 @@
 </template>
 <script lang="ts" setup>
 import {appStore} from "~/stores/app.store"
-
-const props = defineProps({
-  menuClass: {
-    type: String,
-    default: ""
-  }
-
-})
 const store = appStore()
 const openCart = ref(false)
 

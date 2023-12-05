@@ -29,3 +29,12 @@
   <Cart />
 
 </template>
+<script lang="ts" setup>
+const props = defineProps({
+  menuClass: {
+    type: String,
+    default: ""
+  }
+
+})
+</script>
