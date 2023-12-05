@@ -20,8 +20,12 @@ export default defineNuxtConfig({
         "@nuxtjs/tailwindcss",
         "@nuxt/image",
         "@pinia/nuxt",
-        "@formkit/auto-animate"
+        "@formkit/auto-animate",
+        'nuxt-vue3-google-signin'
     ],
+    googleSignIn: {
+        clientId: '691583100776-sr5rl2040l5haqulccgb2d86ovcqohim.apps.googleusercontent.com',
+    },
     ui: {
         global: true,
         icons: ['mdi', 'simple-icons', "heroicons"]

@@ -1,7 +1,7 @@
 <template>
   <UContainer>
     <div class="bg-white rounded-xl pt-5">
-      <div class="flex p-4 mx-10 items-center sticky top-0 bg-white justify-between" style="z-index: 1">
+      <div class="flex p-4 mx-10 items-center sticky top-0 backdrop-blur bg-opacity-90 bg-white justify-between" style="z-index: 1">
         <div class="flex items-center">
           Ordenar por:
           <USelectMenu size="xl" class="ms-2" v-model="sortBy" :options="optionsSelected"/>
@@ -108,74 +108,9 @@ const addProductToCart = (product: ProductType) => {
   store.addProductToCart(product)
 }
 
-const productList: ProductType[] = [
-  {
-    id: 1,
-    name: "Delícia Vermelha",
-    description: "Bolo de veludo vermelho com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 120,
-    image: "https://images.pexels.com/photos/1055272/pexels-photo-1055272.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 4.5,
-  },
-  {
-    id: 2,
-    name: "Encanto de Limão",
-    description: "Bolo de limão com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 75,
-    image: "https://images.pexels.com/photos/4748573/pexels-photo-4748573.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 4.5,
-  },
-  {
-    id: 3,
-    name: "ChocoFest Celestial",
-    description: "Bolo de chocolate com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 220,
-    image: "https://images.pexels.com/photos/19202777/pexels-photo-19202777/free-photo-of-bolo-torta-chocolate-delicioso.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 4.5,
-  },
-  {
-    id: 4,
-    name: "Maravilha de Morango",
-    description: "Bolo de morango com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 165,
-    image: "https://images.pexels.com/photos/15071192/pexels-photo-15071192/free-photo-of-bolo-torta-delicioso-saboroso.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 4.5,
-  },
-  {
-    id: 5,
-    name: "Baunilha Suprema",
-    description: "Bolo de baunilha com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 120,
-    image: "https://images.pexels.com/photos/4109784/pexels-photo-4109784.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 4.5,
-  },
-  {
-    id: 6,
-    name: "Caramelo Divino",
-    description: "Bolo de caramelo com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 120,
-    image: "https://images.pexels.com/photos/3071821/pexels-photo-3071821.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 3.5,
-  },
-  {
-    id: 7,
-    name: "Explosão de Coco",
-    description: "Bolo de coco com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 170,
-    image: "https://images.pexels.com/photos/14242068/pexels-photo-14242068.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 5,
-  },
-  {
-    id: 8,
-    name: "Café Cintilante",
-    description: "Bolo de café com recheio de brigadeiro branco e cobertura de chantilly e raspas de chocolate branco.",
-    price: 120,
-    image: "https://images.pexels.com/photos/3049426/pexels-photo-3049426.jpeg?auto=compress&cs=tinysrgb&w=800",
-    rating: 5,
-  }
-]
 
 const getProductList = computed(() => {
+  const productList = store.getAllProducts as ProductType[]
   if (search.value) {
     return productList.filter(product => product.name.toLowerCase().includes(search.value.toLowerCase()))
   }

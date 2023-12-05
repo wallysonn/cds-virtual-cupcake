@@ -1,7 +1,9 @@
 import {defineStore} from 'pinia'
+import { listAllProducts } from '@/services/product.service'
 
 export const appStore = defineStore('app', {
     state: () => ({
+        products: [] as ProductType[],
         cart: [] as ProductType[]
     }),
     actions: {
@@ -15,6 +17,14 @@ export const appStore = defineStore('app', {
         }
     },
     getters: {
+        getAllProducts(store) {
+            if (store.products.length === 0) {
+                listAllProducts().then((response) => {
+                    store.products = response
+                })
+            }
+            return store.products
+        },
         cartTotalPrice(store) {
             return store.cart.reduce((acc, item) => {
                 let qtd = item.qtd || 1
