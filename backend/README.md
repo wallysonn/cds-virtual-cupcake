@@ -6,6 +6,9 @@ Crie um arquivo .env na raiz do projeto e adicione sua string de conexão com o 
 
 ```
 DATABASE_URL="mongodb+srv://<usuario>:<senha>@<endereco>/<cluster>?retryWrites=true&w=majority"
+GOOGLE_CLIENT_ID=<Fornecido pelo Google Console>
+GOOGLE_CLIENT_SECRET=<Fornecido pelo Google Console>
+GOOGLE_REDIRECT_URI=http://localhost:3000
 ```
 
 ## Como rodar
