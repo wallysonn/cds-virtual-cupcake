@@ -1,5 +1,5 @@
 <template>
-  <div v-if="store.cart.length > 0" class="fixed animate-bounce bottom-5 right-8">
+  <div v-if="store.cart.length > 0" class="fixed animate-bounce bottom-5 right-8 z-10">
     <UChip :text="store.cart.length" size="2xl" color="red">
       <UButton icon="i-mdi-cart" @click="openCart = true" size="xl" color="primary"/>
     </UChip>

@@ -10,3 +10,10 @@ export const verifyCodeFromGoogle = async (code: string) => {
         return error;
     }
 }
+
+export  const authenticate =  () => {
+    appStore().setUser({
+        name: "Usuário Teste",
+        picture: "https://xsgames.co/randomusers/avatar.php?g=male",
+    })
+}

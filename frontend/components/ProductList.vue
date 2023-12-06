@@ -1,18 +1,18 @@
 <template>
   <UContainer>
     <div class="bg-white rounded-xl pt-5">
-      <div class="flex p-4 mx-10 items-center sticky top-0 backdrop-blur bg-opacity-90 bg-white justify-between" style="z-index: 1">
+      <div class="lg:flex lg:p-4 mx-4 lg:mx-10 items-center lg:sticky top-0 backdrop-blur bg-opacity-90 bg-white justify-between" style="z-index: 1">
         <div class="flex items-center">
-          Ordenar por:
-          <USelectMenu size="xl" class="ms-2" v-model="sortBy" :options="optionsSelected"/>
+          <span class="hidden lg:flex">Ordenar por:</span>
+          <USelectMenu size="xl" class="lg:ms-2 mb-2 lg:mb-0 w-full lg:w-auto" v-model="sortBy" :options="optionsSelected"/>
         </div>
-        <div class="w-[50%]">
+        <div class="w-full lg:w-[50%]">
           <UInput v-model="search" placeholder="Pesquisar um produto" size="xl"
                   icon="i-heroicons-magnifying-glass-20-solid" trailing/>
         </div>
       </div>
       <div class="mx-auto max-w-2xl px-4 pb-3 sm:px-6  lg:max-w-7xl lg:px-8">
-        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8" v-auto-animate>
+        <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           <div v-for="product in getProductListSorted" :key="product.id" class="group relative shadow p-3 flex flex-col">
             <UBadge class="absolute border-none top-4 left-4">
               <UIcon name="i-heroicons-star" class="mr-1"/>

@@ -10,15 +10,15 @@
       </div>
 
       <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <UForm class="space-y-6">
-          <UFormGroup label="Login">
-            <UInput size="xl" placeholder="E-mail, CPF ou CNPJ " type="email"/>
+        <UForm @submit="submit" :state="data" class="space-y-6">
+          <UFormGroup label="Login" required>
+            <UInput size="xl" v-model="data.login" required placeholder="E-mail " type="email"/>
           </UFormGroup>
-          <UFormGroup label="Senha">
-            <UInput size="xl" placeholder="Mínimo de 6 caracteres" type="password"/>
+          <UFormGroup label="Senha" required>
+            <UInput size="xl" v-model="data.password" required placeholder="Mínimo de 6 caracteres" type="password"/>
           </UFormGroup>
 
-          <UButton icon="i-heroicons-arrow-right" label="Entrar" block size="xl"/>
+          <UButton type="submit" icon="i-heroicons-arrow-right" label="Entrar" block size="xl"/>
 
         </UForm>
 
@@ -32,7 +32,7 @@
   </NuxtLayout>
 </template>
 <script setup lang="ts">
-import {verifyCodeFromGoogle} from '~/services/auth.service'
+import {verifyCodeFromGoogle , authenticate} from '~/services/auth.service'
 import {
   useCodeClient,
   type ImplicitFlowSuccessResponse,
@@ -40,13 +40,20 @@ import {
 } from "vue3-google-signin";
 const router = useRouter()
 
+const submit = () => {
+  authenticate()
+  router.push('/profile')
+}
+
+const data = ref({
+  login: '',
+  password: ''
+})
+
 const handleOnSuccess = async (response: ImplicitFlowSuccessResponse) => {
-  console.log("Access Token: ", response.access_token);
-  console.log("ID Token: ", response.code);
   //Busca o usuário no banco de dados
   try {
-    const ret = await verifyCodeFromGoogle(response.code)
-    console.log(ret)
+    await verifyCodeFromGoogle(response.code)
     await router.push('/profile')
   } catch (error) {
     console.log(error)

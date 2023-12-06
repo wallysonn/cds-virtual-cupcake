@@ -7,3 +7,7 @@ type ProductType = {
     description: string;
     rating: number;
 }
+type UserType = {
+    name: string
+    picture: string
+}
