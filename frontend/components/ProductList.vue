@@ -112,7 +112,8 @@ const addProductToCart = (product: ProductType) => {
 const getProductList = computed(() => {
   const productList = store.getAllProducts as ProductType[]
   if (search.value) {
-    return productList.filter(product => product.name.toLowerCase().includes(search.value.toLowerCase()))
+    let searchValue = search.value.toLowerCase()
+    return productList.filter(product => product.name.toLowerCase().includes(searchValue) || product.description.toLowerCase().includes(searchValue))
   }
   return productList
 })
