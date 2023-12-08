@@ -21,7 +21,6 @@
       <tr v-for="product in store.cart">
         <td>{{ product.name }}</td>
         <td class="w-[80px] text-center p-2">
-<!--          <UInput type="number"  v-model="product.qtd" placeholder="Total"></UInput>-->
           <InputNumber v-model="product.qtd" />
         </td>
         <td class="w-[80px] p-2">R$ {{ product.price * (product.qtd || 1) }}</td>
@@ -31,25 +30,57 @@
         </td>
       </tr>
     </table>
-    <div class="text-right px-2 pt-2 font-semibold border-t mt-2">R$ {{ store.cartTotalPrice }}</div>
-    <div class="mt-5 text-right">
-      <UButton size="lg" @click="confirm" label="Finalizar"/>
+
+    <div class="text-right px-2 pt-2 font-light border-t mt-2" v-if="discount">- R$ {{ discount  }}</div>
+    <div class="text-right px-2 pt-2 font-semibold border-t mt-2">Total: R$ {{ store.cartTotalPrice - discount  }}</div>
+
+    <div class="mt-5 flex items-center justify-between">
+      <div class="flex">
+        <UInput size="lg" v-model="coupon" class="font-bold" placeholder="Cupom de desconto" />
+        <UButton variant="soft" @click="validateCoupon" :loading="validatingCoupon" class="ms-2" color="gray" label="Validar Cupom" />
+      </div>
+      <UButton icon="i-mdi-check" size="lg" @click="confirm" label="Finalizar"/>
     </div>
+    <UAlert variant="soft" icon="i-mdi-ban" color="red" class="mt-5" v-if="couponValidationError" :description="couponValidationError" />
   </div>
 </template>
 <script lang="ts" setup>
 import {appStore} from "~/stores/app.store"
+import { validate } from '~/services/coupon.service'
 
 const store = appStore()
 const isConfirmed = ref(false)
 const router = useRouter()
+const discount = ref(0)
+const validatingCoupon = ref(false)
+const couponValidationError = ref('')
+const coupon = ref('')
+
+const validateCoupon = async () => {
+  validatingCoupon.value = true
+  couponValidationError.value = ''
+  try {
+
+    const ret = await validate(coupon.value)
+    discount.value = ret.data.discount
+
+  } catch(e) {
+    console.log(e)
+    couponValidationError.value = 'Cupom inválido'
+    discount.value = 0
+  } finally {
+    validatingCoupon.value = false
+
+  }
+}
 
 const confirm = () => {
   if (!store.isAuthenticated) {
     router.push('/login')
     return
   }
-  isConfirmed.value = true
+  store.saveOrder(discount.value)
+  router.push('/profile')
   store.clearProductsFromCart()
 }
 

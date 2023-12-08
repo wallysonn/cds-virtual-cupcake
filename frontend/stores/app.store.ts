@@ -5,7 +5,8 @@ export const appStore = defineStore('app', {
     state: () => ({
         products: [] as ProductType[],
         cart: [] as ProductType[],
-        user: null as UserType | null
+        user: null as UserType | null,
+        orders: [] as OrderType[]
     }),
     actions: {
         setUser(user: UserType) {
@@ -21,11 +22,25 @@ export const appStore = defineStore('app', {
         },
         clearProductsFromCart() {
             this.cart = []
+        },
+        saveOrder(discount: number) {
+            this.orders.push({
+                id: Math.floor(Math.random() * 1000),
+                discount,
+                user: this.user as UserType,
+                status: 'PENDING',
+                products: this.cart,
+                total: this.cartTotalPrice,
+                date: new Date().toISOString()
+            })
         }
     },
     getters: {
         getUser(store) : UserType | null {
             return store.user
+        },
+        getOrders(store) : OrderType[] {
+          return store.orders
         },
         isAuthenticated(store) : boolean {
             return store.user !== null

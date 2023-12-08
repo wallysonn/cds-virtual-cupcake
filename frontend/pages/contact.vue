@@ -5,7 +5,7 @@
       <h2 class="text-3xl font-semibold">Formulário de contato</h2>
       <p class="font-light">Nosso horário de atendimento é de 8:00 às 18:00 de segunda a sábado</p>
 
-      <UForm @submit="submit" ref="form" :schema="contactValidator" :state="data" class="m-auto mt-10 w-[60%]">
+      <UForm @submit="submit" ref="form" :schema="contactValidator" :state="data" class="m-auto mt-10 lg:w-[60%]">
 
         <UAlert v-if="errorMessage" class="mb-5" color="red" icon="i-mdi-ban" title="Ocorreu um erro" :description="errorMessage" />
 
@@ -26,7 +26,7 @@
         </UFormGroup>
 
         <div class="text-center">
-          <UButton :loading="sending" icon="i-heroicons-arrow-right" type="submit" label="Enviar" size="lg"/>
+          <UButton :loading="sending" icon="i-heroicons-arrow-right" type="submit" label="Enviar"  size="lg"/>
         </div>
 
       </UForm>

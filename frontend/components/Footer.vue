@@ -3,7 +3,7 @@
     <div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 lg:px-8">
       <div class="flex items-center flex-col ">
         <div class="text-teal-600 mb-6">
-          <Logo/>
+          <Logo class="items-center"/>
         </div>
         <div class="mt-8 grid grid-cols-2 gap-8 lg:mt-0 lg:grid-cols-5 lg:gap-y-16">
           <ul class="col-span-2 flex justify-start gap-6 lg:col-span-5 lg:justify-end">

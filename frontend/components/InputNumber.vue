@@ -1,7 +1,7 @@
 <template>
   <div class="border flex items-center justify-between p-1 rounded">
     <UButton variant="ghost" class="rounded-full" size="xs" icon="i-mdi-minus" @click="decrement"/>
-    <span class="px-2 min-w-[40px]">{{ currentValue }}</span>
+    <span class="px-2 min-w-[20px]">{{ currentValue }}</span>
     <UButton variant="ghost" class="rounded-full" size="xs" icon="i-mdi-plus" @click="increment"/>
   </div>
 </template>
