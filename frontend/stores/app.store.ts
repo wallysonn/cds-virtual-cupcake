@@ -24,13 +24,13 @@ export const appStore = defineStore('app', {
         }
     },
     getters: {
-        getUser(store) {
+        getUser(store) : UserType | null {
             return store.user
         },
-        isAuthenticated(store) {
+        isAuthenticated(store) : boolean {
             return store.user !== null
         },
-        getAllProducts(store) {
+        getAllProducts(store) : ProductType[] {
             if (store.products.length === 0) {
                 listAllProducts().then((response) => {
                     store.products = response
@@ -38,16 +38,16 @@ export const appStore = defineStore('app', {
             }
             return store.products
         },
-        cartTotalPrice(store) {
+        cartTotalPrice(store) : number {
             return store.cart.reduce((acc, item) => {
                 let qtd = item.qtd || 1
                 return acc + (item.price * qtd)
             }, 0)
         },
-        cartTotalItems(store) {
+        cartTotalItems(store) : number {
             return store.cart.length
         },
-        listItems(store) {
+        listItems(store) : ProductType[] {
             return store.cart
         },
         //check if product is in cart

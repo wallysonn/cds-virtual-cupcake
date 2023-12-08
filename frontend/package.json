@@ -10,10 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
-    "@formkit/auto-animate": "^0.8.1",
     "@iconify-json/mdi": "^1.1.53",
     "@iconify-json/simple-icons": "^1.1.63",
-    "@nuxt/devtools": "latest",
+    "@nuxt/devtools": "^1.0.5",
     "@nuxt/image": "^1.1.0",
     "@nuxtjs/tailwindcss": "^6.10.1",
     "@pinia/nuxt": "^0.5.1",
