@@ -21,7 +21,8 @@
       <tr v-for="product in store.cart">
         <td>{{ product.name }}</td>
         <td class="w-[80px] text-center p-2">
-          <UInput type="number" v-model="product.qtd" placeholder="Total"></UInput>
+<!--          <UInput type="number"  v-model="product.qtd" placeholder="Total"></UInput>-->
+          <InputNumber v-model="product.qtd" />
         </td>
         <td class="w-[80px] p-2">R$ {{ product.price * (product.qtd || 1) }}</td>
         <td class="w-[40px]">
