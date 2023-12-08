@@ -20,7 +20,6 @@ export default defineNuxtConfig({
         "@nuxtjs/tailwindcss",
         "@nuxt/image",
         "@pinia/nuxt",
-        "@formkit/auto-animate",
         'nuxt-vue3-google-signin'
     ],
     googleSignIn: {
