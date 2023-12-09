@@ -1,4 +1,5 @@
 import {ProductService} from '../services/ProductService'
+import {CouponService} from '../services/CouponService'
 import {sendGridMail} from '../services/SendgridMailService'
 import {GoogleOAuthClientService} from '../services/GoogleOAuthClientService'
 import {FastifyInstance, FastifyPluginOptions, FastifyRequest, FastifyReply} from 'fastify'
@@ -38,6 +39,25 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
         }
 
     })
+
+    fastify.post("/verify/coupon", async (request: FastifyRequest, reply: FastifyReply) => {
+
+        try {
+
+            const {code} = request.body as any
+            const coupon = await CouponService.findByCode(code)
+            if (!coupon) throw Error("Cupom não encontrado")
+
+            return reply.status(200).send({
+                discount: coupon.discount,
+            });
+
+        } catch (error) {
+            return reply.status(400).send({message: error});
+        }
+
+    })
+
     fastify.post("/send_contact", async (request: FastifyRequest, reply: FastifyReply) => {
         try {
 

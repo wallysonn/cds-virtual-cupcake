@@ -1,19 +1,24 @@
 import prismaClient from "../prisma";
 
 export class CouponService {
-    static async create(product: any) {
-        return prismaClient.product.create({
+    static async create(coupon: any) {
+        return prismaClient.coupon.create({
             data: {
-                name: product.name,
-                description: product.description,
-                price: product.price,
-                image: product.image,
-                rating: product.rating,
+                code: coupon.code,
+                discount: coupon.discount,
             }
         });
     }
 
     static async listAll() {
-        return prismaClient.product.findMany();
+        return prismaClient.coupon.findMany();
+    }
+
+    static async findByCode(code: string) {
+        return prismaClient.coupon.findUnique({
+            where: {
+                code: code
+            }
+        });
     }
 }

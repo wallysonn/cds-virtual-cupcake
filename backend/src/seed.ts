@@ -1,4 +1,5 @@
-import { ProductService } from './services/ProductService'
+import {ProductService} from './services/ProductService'
+import {CouponService} from './services/CouponService'
 
 const productList: {
     name: string
@@ -65,13 +66,55 @@ const productList: {
     }
 ]
 
+const couponList: {
+    code: string,
+    discount: number
+}[] = [
+    {
+        code: "10OFF",
+        discount: 10
+    },
+    {
+        code: "20OFF",
+        discount: 20
+    },
+    {
+        code: "30OFF",
+        discount: 30
+    },
+    {
+        code: "40OFF",
+        discount: 40
+    },
+    {
+        code: "50OFF",
+        discount: 50
+    },
+    {
+        code: "60OFF",
+        discount: 60
+    },
+    {
+        code: "70OFF",
+        discount: 70
+    },
+    {
+        code: "80OFF",
+        discount: 80
+    },
+]
+
 async function main() {
     for (const product of productList) {
-        await ProductService.create(product)
+        //await ProductService.create(product)
     }
+
+    //salva os cupons
+     for (const coupon of couponList) {
+         await CouponService.create(coupon)
+     }
 }
 
 main().finally(() => {
 
 })
-
